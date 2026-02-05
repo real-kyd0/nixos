@@ -3,6 +3,7 @@ Installation Guide:
 ```
 git clone https://github.com/real-kyd0/nixos.git
 cp nixos/configuration.nix /etc/nixos/configuration.nix
+sudo nixos-rebuild switch
 mkdir ~/{wallpaper,Pictures}
 cp nixos/.config/* ~/.config
 cp nixos/wallpaper/* ~/wallpaper
