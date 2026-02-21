@@ -144,6 +144,7 @@
     brightnessctl
     playerctl
     pamixer
+	networkmanagerapplet
     xdg-utils
     git
     htop
@@ -153,7 +154,7 @@
     wget
     curl
     unzip
-    python3
+    python312
     bibata-cursors
     ffmpeg
     iwd
