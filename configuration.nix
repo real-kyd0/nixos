@@ -8,15 +8,10 @@
 
   boot = {
     loader = {
-      systemd-boot.enable = false;
+      systemd-boot.enable = true;
+	  grub.enable = false;
       efi = {
         canTouchEfiVariables = true;
-      };
-      grub = {
-        enable = true;
-	efiSupport = true;
-	device = "nodev";
-	useOSProber = true;
       };
     };
     kernelPackages = pkgs.linuxPackages;
@@ -26,35 +21,19 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   services.dbus.enable = true;
-  services.resolved.enable = true;
   networking = {
     hostName = "nixbtw";
-    useDHCP = lib.mkDefault true;
-    networkmanager.enable = false;
+    useDHCP = false;
+    networkmanager.enable = true;
     wireless = {
       enable = false;
-      iwd = {
-        enable = true;
-        settings = {
-          General = {
-            EnableNetworkConfiguration = true;
-            AutoConnect = true;
-          };
-          Network = {
-            EnableIPv6 = true;
-          };
-        };
-      };
+      iwd.enable = false;
     };
     firewall = {
       enable = true;
       allowedTCPPorts = [ 8000 ];
       allowedUDPPorts = [ ];
     };
-    nameservers = [
-      "1.1.1.1"
-      "8.8.8.8"
-    ];
   };
 
   users.users.kyd0 = {
@@ -161,6 +140,10 @@
   nixpkgs.config.allowUnfree = true;
 
   environment.systemPackages = with pkgs; [
+    brightnessctl
+    playerctl
+    pamixer
+    xdg-utils
     git
     htop
     btop
@@ -181,6 +164,7 @@
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
+    WLR_NO_HARDWARE_CURSORS = "1";
     XDG_SESSION_TYPE = "wayland";
     MOZ_ENABLE_WAYLAND = "1";
   };
