@@ -23,12 +23,13 @@
   services.dbus.enable = true;
   networking = {
     hostName = "nixbtw";
-    useDHCP = false;
+
     networkmanager.enable = true;
     wireless = {
       enable = false;
       iwd.enable = false;
     };
+
     firewall = {
       enable = true;
       allowedTCPPorts = [ 8000 ];
